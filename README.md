@@ -12,8 +12,8 @@
 - Frameworks
     - ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?logo=spring&logoColor=white)
 - tools
-    - ![JetBrains IDE](https://img.shields.io/badge/JetBrains-000000?logo=jetbrains&logoColor=white) ![JetBrains IDE](https://img.shields.io/badge/JetBrains-000000?logo=jetbrains&logoColor=white)
- 
+    - ![JetBrains IDE](https://img.shields.io/badge/JetBrains-000000?logo=jetbrains&logoColor=white)
+
 ## how to navigate
 
 complete this part later
