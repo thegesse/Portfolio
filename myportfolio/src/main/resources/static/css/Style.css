@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    background-color: #323437;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 18px; /* base size */
+}
+
+#terminal {
+    width: 800px;
+    margin: 40px auto;
+    background-color: #323437;
+    padding: 15px;
+    font-size: 1rem; /* inherits 18px from body */
+}
+
+#output {
+    white-space: pre-wrap;
+    margin-bottom: 8px;
+    color: white;
+    font-size: 1rem; /* output matches command input */
+}
+
+#terminal > div {
+    display: flex;
+    align-items: center;
+}
+
+#terminal span {
+    margin-right: 6px;
+}
+
+/* Static prompt inside input line */
+#terminal > div span {
+    color: #e2b714;
+    font-size: 0.9rem; /* slightly smaller than commands */
+}
+
+/* Input box */
+#input {
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    flex: 1;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem; /* full size for typing */
+    caret-color: #e2b714;
+}
+
+/* Prompt in output lines */
+.prompt {
+    color: #e2b714;
+    font-size: 0.9rem; /* smaller than typed command */
+}
+
+/* Typed command in output lines */
+.command {
+    color: white;
+    font-size: 1rem; /* slightly larger than prompt */
+}
