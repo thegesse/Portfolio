@@ -29,3 +29,8 @@
 ## How it was made
 
 ### This project was made using Java and Spring boot, in an afternoon, it was then deployed on render.com for free website hosting, I am also very innexperienced in JS as this was built so ai was used for the frontend, I apologize for the vibe coding in advance.
+
+
+
+## Special thanks
+### I would like to give a special thanks to @devilishlyney for motivating me and sticking with me through this 
