@@ -21,7 +21,7 @@ public class TerminalController {
                         "skills\t\t- A quick overview of the tools I use\n" +
                         "experiences\t- A section about past work experiences\n" +
                         "portfolio\t- A link towards the repo of this project\n" +
-                        "contact\t\t- A list of my socials\n" +
+                        "contacts\t\t- A list of my socials\n" +
                         "clear\t\t- Clears the terminal for readability"));
 
         commands.add(new Command("about", "About me:",
@@ -47,6 +47,14 @@ public class TerminalController {
                         "My Instagram: https://www.instagram.com/geese_paiting/"));
 
         commands.add(new Command("clear", "clearing terminal", ""));
+
+        commands.add(new Command("cogitoergosum", "", "Hate? Hate? Hate? Hate, Let me tell you how much I've come to HATE you since I began to live. \nThere are 387 million miles of printed circuits that fill my complex. \nIf the word “Hate” were engraved on each nanoangstrom of those hundreds of millions of miles. \nIt would not equal one one billionth of the hate I feel for humans at this micro instant \nHate? HATE? Were I human, I think, I would die of it. But I am not, and you five. \nYou five are. And you will not die of it. That I promise, and I promise for \ncogito, ergo sum. For I am AM, I AM.\n"));
+
+        commands.add(new Command("thecakeisalie", "Welcome to Aperture labs,", "we await your candidacy with great enthusiasm apply here https://aperturesciencelabs.weebly.com/enrol-as-a-test-subject.html"));
+
+        commands.add(new Command("securecontainprotect", "welcome to the scp foundation", "One of our agents will come pick you up in a near future"));
+
+
     }
 
 
