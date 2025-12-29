@@ -1,0 +1,49 @@
+# ----------------------------
+# Java / Spring Boot
+# ----------------------------
+
+# Compiled class files
+*.class
+
+# Logs
+*.log
+logs/
+*.out
+
+# Build output directories
+/target/
+/build/
+
+# Maven / Gradle wrapper caches
+/.mvn/wrapper/maven-wrapper.jar
+/.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE specific files
+/.idea/
+/*.iml
+*.ipr
+*.iws
+*.classpath
+*.project
+
+# Eclipse
+/.settings/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Spring Boot properties files containing secrets
+/application*.yml
+/application*.properties
+!application.yml.example
+!application.properties.example
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
