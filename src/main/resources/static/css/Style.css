@@ -44,7 +44,7 @@ body {
     flex: 1;
     font-family: 'Roboto Mono', monospace;
     font-size: 1rem; /* full size for typing */
-    caret-color: #e2b714;
+    caret-color: white;
 }
 
 /* Prompt in output lines */
@@ -58,3 +58,14 @@ body {
     color: white;
     font-size: 1rem; /* slightly larger than prompt */
 }
+
+.cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+

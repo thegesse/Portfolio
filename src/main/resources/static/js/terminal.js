@@ -6,20 +6,26 @@ const PROMPT = "guestUser@portfolio:~$";
 let commandHistory = [];
 let historyIndex = -1;
 
+let isTyping = false;
+let skipTyping = false;
+
+/* Blinking cursor */
+const cursor = document.createElement("span");
+cursor.className = "cursor";
+cursor.textContent = "█";
+
 /* Print output text with clickable links */
 function print(text = "") {
-    // Convert URLs to clickable links
     const linked = text.replace(
         /(https?:\/\/[^\s]+)/g,
         '<a href="$1" target="_blank" style="color: #e2b714; text-decoration: underline;">$1</a>'
     );
 
-    // Replace newlines with <br>
     output.innerHTML += linked.replace(/\n/g, "<br>") + "<br>";
     output.scrollTop = output.scrollHeight;
 }
 
-/* Print a command with a colored prompt */
+/* Print command with prompt */
 function printCommand(cmd) {
     output.innerHTML +=
         `<span class="prompt">${PROMPT}</span> ` +
@@ -27,7 +33,41 @@ function printCommand(cmd) {
     output.scrollTop = output.scrollHeight;
 }
 
-/* Welcome text with ASCII art */
+/* Typing effect */
+async function typeText(text, speed = 20) {
+    isTyping = true;
+    skipTyping = false;
+    input.disabled = true;
+
+    output.appendChild(cursor);
+
+    for (let i = 0; i < text.length; i++) {
+        if (skipTyping) {
+            cursor.remove();
+            print(text.slice(i));
+            isTyping = false;
+            input.disabled = false;
+            return;
+        }
+
+        if (text[i] === "\n") {
+            cursor.before(document.createElement("br"));
+        } else {
+            cursor.before(text[i]);
+        }
+
+        output.scrollTop = output.scrollHeight;
+        await new Promise(resolve => setTimeout(resolve, speed));
+    }
+
+    cursor.remove();
+    output.innerHTML += "<br>";
+
+    isTyping = false;
+    input.disabled = false;
+}
+
+/* Welcome message */
 function printWelcome() {
     print(
         `                                               _    __      _ _       
@@ -48,8 +88,15 @@ function printWelcome() {
 
 printWelcome();
 
-/* Handle keyboard input */
+/* Keyboard input handling */
 input.addEventListener("keydown", async (event) => {
+
+    /* Skip typing animation */
+    if (event.key === "Enter" && isTyping) {
+        skipTyping = true;
+        return;
+    }
+
     if (event.key === "Enter") {
         const cmd = input.value.trim();
         input.value = "";
@@ -59,30 +106,34 @@ input.addEventListener("keydown", async (event) => {
         commandHistory.push(cmd);
         historyIndex = commandHistory.length;
 
-        /* Clear terminal locally */
+        /* Clear terminal */
         if (cmd.toLowerCase() === "clear") {
             output.innerHTML = "";
             printWelcome();
             return;
         }
 
-        /* Print the command with prompt */
         printCommand(cmd);
 
-        /* Fetch command from server */
         try {
             const response = await fetch(`/terminal/execute?cmd=${encodeURIComponent(cmd)}`);
             const data = await response.json();
 
             print(data.name);
-            print(data.content);
+
+            if (cmd.toLowerCase() === "connectionterminated" || cmd.toLowerCase() === "cogitoergosum") {
+                await typeText(data.content, 22);
+            } else {
+                print(data.content);
+            }
+
             print("");
         } catch (error) {
             print("Error: could not reach server");
         }
     }
 
-    /* Command history navigation */
+    /* Command history */
     if (event.key === "ArrowUp") {
         if (historyIndex > 0) {
             historyIndex--;
