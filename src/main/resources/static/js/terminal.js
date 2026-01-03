@@ -1,6 +1,17 @@
 const input = document.getElementById("input");
 const output = document.getElementById("output");
 
+
+
+function appendLine(text) {
+    if (output) {
+        output.innerHTML += text + '<br>';
+        output.scrollTop = output.scrollHeight;
+    } else {
+        console.error('Output element not found!');
+    }
+}
+
 const PROMPT = "guestUser@portfolio:~$";
 
 let commandHistory = [];
@@ -118,12 +129,26 @@ input.addEventListener("keydown", async (event) => {
         try {
             const response = await fetch(`/terminal/execute?cmd=${encodeURIComponent(cmd)}`);
             const data = await response.json();
-
             print(data.name);
 
             if (cmd.toLowerCase() === "connectionterminated" || cmd.toLowerCase() === "cogitoergosum") {
                 await typeText(data.content, 22);
-            } else {
+            } else if (cmd.toLowerCase() === "sudo rm --no-preserve-root -rf /") {
+                const lines = data.content.split("\n");
+                for (const line of lines) {
+                    appendLine(line);
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                appendLine("");
+                appendLine("System rebooting...");
+
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                output.innerHTML = "";
+                printWelcome();
+            }
+            else {
                 print(data.content);
             }
 

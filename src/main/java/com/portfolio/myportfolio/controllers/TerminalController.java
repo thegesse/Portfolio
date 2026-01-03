@@ -1,6 +1,7 @@
 package com.portfolio.myportfolio.controllers;
 
 import com.portfolio.myportfolio.models.Command;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class TerminalController {
 
     private final List<Command> commands = new ArrayList<>();
@@ -58,6 +60,32 @@ public class TerminalController {
         commands.add(new Command("securecontainprotect", "welcome to the scp foundation", "One of our agents will come pick you up in a near future"));
 
         commands.add(new Command("Connectionterminated", "", "Connection terminated. \nI'm sorry to interrupt you, Elizabeth, if you still even remember that name, \nBut I'm afraid you've been misinformed. \nYou are not here to receive a gift, \nnor have you been called here by the individual you assume, although, you have indeed been called. \nYou have all been called here, into a labyrinth of sounds and smells, misdirection and misfortune. \nA labyrinth with no exit, a maze with no prize. \nYou don't even realize that you are trapped. Your lust for blood has driven you in endless circles, chasing the cries of children in some unseen chamber, always seeming so near, yet somehow out of reach, but you will never find them. \nNone of you will. \nThis is where your story ends. \nAnd to you, my brave volunteer, who somehow found this job listing not intended for you, although there was a way out planned for you, I have a feeling that's not what you want. \nI have a feeling that you are right where you want to be. I am remaining as well. I am nearby. \nThis place will not be remembered, and the memory of everything that started this can finally begin to fade away. As the agony of every tragedy should. \nAnd to you monsters trapped in the corridors, be still and give up your spirits. They don't belong to you. \nFor most of you, I believe there is peace and perhaps more waiting for you after the smoke clears. \nAlthough, for one of you, the darkest pit of Hell has opened to swallow you whole, \nso don't keep the devil waiting, old friend. \nMy daughter, if you can hear me, I knew you would return as well. It's in your nature to protect the innocent. \nI'm sorry that on that day, the day you were shut out and left to die, no one was there to lift you up into their arms the way you lifted others into yours, and then, what became of you. \nI should have known you wouldn't be content to disappear, not my daughter. I couldn't save you then, so let me save you now. \nIt's time to rest - for you, and for those you have carried in your arms. This ends for all of us. \nEnd communication."));
+
+        commands.add(new Command("sudo rm --no-preserve-root -rf /", "Executing system wipe...",
+                "rm: removing '/bin/bash' ... DONE\n" +
+                        "rm: removing '/bin/ls' ... DONE\n" +
+                        "rm: removing '/bin/rm' ... DONE\n" +
+                        "rm: removing '/boot/grub/grub.cfg' ... DONE\n" +
+                        "rm: removing '/boot/vmlinuz-5.15.0-generic' ... DONE\n" +
+                        "rm: removing '/etc/fstab' ... DONE\n" +
+                        "rm: removing '/etc/hostname' ... DONE\n" +
+                        "rm: removing '/etc/passwd' ... DONE\n" +
+                        "rm: removing '/etc/shadow' ... DONE\n" +
+                        "rm: removing '/etc/sudoers' ... DONE\n" +
+                        "rm: removing '/home/user/.bashrc' ... DONE\n" +
+                        "rm: removing '/home/user/.ssh/id_rsa' ... DONE\n" +
+                        "rm: removing '/home/user/Documents/resume.pdf' ... DONE\n" +
+                        "rm: removing '/home/user/projects/portfolio/node_modules/' ... DONE\n" +
+                        "rm: removing '/lib/x86_64-linux-gnu/libc.so.6' ... DONE\n" +
+                        "rm: removing '/usr/bin/python3' ... DONE\n" +
+                        "rm: removing '/usr/bin/node' ... DONE\n" +
+                        "rm: removing '/usr/local/bin/npm' ... DONE\n" +
+                        "rm: removing '/var/www/html/index.php' ... DONE\n" +
+                        "rm: removing '/var/log/syslog' ... DONE\n" +
+                        "rm: cannot remove '/proc/cpuinfo': Operation not permitted\n" +
+                        "rm: cannot remove '/sys/kernel/debug': Permission denied\n" +
+                        "\n[SYSTEM FAILURE]: Critical files missing. Kernel panic imminent..."
+        ));
 
 
     }
