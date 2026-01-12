@@ -5,7 +5,9 @@ const output = document.getElementById("output");
 
 function appendLine(text) {
     if (output) {
-        output.innerHTML += text + '<br>';
+        const line = document.createElement('div');
+        line.textContent = text;
+        output.appendChild(line);
         output.scrollTop = output.scrollHeight;
     } else {
         console.error('Output element not found!');
@@ -25,22 +27,63 @@ const cursor = document.createElement("span");
 cursor.className = "cursor";
 cursor.textContent = "█";
 
+//add for safety
+function escapeHTML(str) {
+    return str.replace(/[&<>"']/g, m => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[m]);
+}
+
 /* Print output text with clickable links */
 function print(text = "") {
-    const linked = text.replace(
-        /(https?:\/\/[^\s]+)/g,
-        '<a href="$1" target="_blank" style="color: #e2b714; text-decoration: underline;">$1</a>'
-    );
+    const line = document.createElement("div");
+    line.style.whiteSpace = "pre-wrap"; // Keeps ASCII art perfectly aligned
+    line.style.minHeight = "1.2em";     // Ensures empty prints "" still take up space
 
-    output.innerHTML += linked.replace(/\n/g, "<br>") + "<br>";
+    // Regex to find URLs
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = text.split(urlRegex);
+
+    parts.forEach(part => {
+        if (part.match(urlRegex)) {
+            // It's a URL - create a real link object
+            const a = document.createElement("a");
+            a.href = part;
+            a.target = "_blank";
+            a.style.color = "#e2b714";
+            a.style.textDecoration = "underline";
+            a.textContent = part; // SECURE: textContent doesn't execute code
+            line.appendChild(a);
+        } else {
+            // It's normal text - add it as a safe text node
+            line.appendChild(document.createTextNode(part));
+        }
+    });
+
+    output.appendChild(line);
     output.scrollTop = output.scrollHeight;
 }
 
 /* Print command with prompt */
 function printCommand(cmd) {
-    output.innerHTML +=
-        `<span class="prompt">${PROMPT}</span> ` +
-        `<span class="command">${cmd}</span><br>`;
+    const line = document.createElement("div");
+
+    const promptSpan = document.createElement("span");
+    promptSpan.className = "prompt";
+    promptSpan.textContent = PROMPT + " ";
+
+    const cmdSpan = document.createElement("span");
+    cmdSpan.className = "command";
+    cmdSpan.textContent = cmd; // Securely sets text only
+
+    line.appendChild(promptSpan);
+    line.appendChild(cmdSpan);
+    output.appendChild(line);
+
     output.scrollTop = output.scrollHeight;
 }
 
@@ -72,7 +115,7 @@ async function typeText(text, speed = 20) {
     }
 
     cursor.remove();
-    output.innerHTML += "<br>";
+    output.appendChild(document.createElement("br"));
 
     isTyping = false;
     input.disabled = false;
