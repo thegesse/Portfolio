@@ -14,11 +14,14 @@
     - ![Java](https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 - Frameworks
     -  ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?logo=spring&logoColor=white)
-- tools
+- Build tools
+    - ![Maven](https://img.shields.io/badge/Maven-C71A36?logo=apachemaven&logoColor=white)
+    
+- Developement and DevOps
     - ![JetBrains IDE](https://img.shields.io/badge/JetBrains-000000?logo=jetbrains&logoColor=white)
     - ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-- deployed with
+- Deployment
     - ![Render](https://img.shields.io/badge/Render-000000?style=for-the-badge&logo=render&logoColor=white)
 
 ## How to navigate
